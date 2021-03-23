@@ -1,0 +1,1 @@
+INSERT INTO Species(species) VALUES ('Other');

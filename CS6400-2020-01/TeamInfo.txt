@@ -1,0 +1,4 @@
+Thank you for checking out our project 3.
+Our Query file are saved at https://github.gatech.edu/CS6400-OMSCS-2020-01-Spring/CS6400-2020-01-Team080/blob/master/sql-scripts/init.sql and monthly_report.sql
+Absolute Path is CS6400-2020-01-Team080/⁨sql-scripts/init.sql⁩ and sql-scripts/monthly_report.sql
+

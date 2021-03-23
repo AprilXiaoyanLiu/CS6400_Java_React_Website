@@ -1,0 +1,367 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{floatrow}
+\usepackage{layout}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{listings}
+\geometry{margin=1in}
+\usepackage{authblk}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    bookmarks=true,
+    }
+
+\lstset{frame=tb,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+\title{\textbf{\huge{Phase 1 Report}}}
+\author{\textbf\large{Xining Li, Yi Zhao, Xiaoyan Liu, Yaguang Chen}}
+\affil{\textbf{GaTech}}
+\date{\today}
+\maketitle
+\begin{abstract}
+This is abstract
+\end{abstract}\maketitle
+%	\tableofcontents
+%%	Main	body	starts	here
+%	Description	of	Section	1
+\section{Table of Contents}
+
+	\begin{itemize}
+		\item \hyperlink{login}{Login}
+		\item \hyperlink{animal_dashboard}{Animal Dashboard}
+		\item \hyperlink{add_animal}{Add Animal}
+		\item \hyperlink{animal_detail}{Animal Detail}
+		\item \hyperlink{vaccinations}{Vaccinations}
+		\item \hyperlink{adoption}{Adoption}
+		\item \hyperlink{add_adoption_app}{Add Adoption Application}
+		\item \hyperlink{adoption_app_review}{Adoption Application Review}
+		\item \hyperlink{animal_control_report}{Animal Control Report}
+		\item \hyperlink{volunteer_of_the_month}{Volunteer of the Month}
+		\item \hyperlink{monthly_adoption_report}{Monthly Adoption Report}
+		\item \hyperlink{volunteer_lookup}{Volunteer Lookup}
+		\item \hyperlink{vaccine_reminder_report}{Vaccine Reminder Report}
+	\end{itemize}
+
+
+\pagebreak
+
+\section{Abstract Code}
+\hypertarget{login}{\subsection{Login}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+        \item User enters \textbf{email}, \textbf{password} input fields.
+        \item If data validation is successful for both username and password input fields, then:
+
+\item When \textit{Enter} button is clicked \begin{itemize}
+        \item If User record is found and user entered password match the username's key associated password in the \textbf{User} table: Store login information as session variable '\$UserID', and go to the \underline{\textbf{Animal Dashboard}}
+	\item Else: Go back to the \underline{\textbf{Login}}
+	\end{itemize}
+\end{itemize}
+
+\hypertarget{animal_dashboard}{\subsection{Animal Dashboard}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item Show the animal’s name, species, breed, sex, alteration status, age, and adoptability status by the result of the corresponding SQL query.
+	\item Populate species and adoptability status dropdowns, if no buttons are pushed, do nothing. If clicking on sepcies and/or adopatability status, query corresponding animals and display them on dashboard only.
+
+	\item Upon: \begin{itemize}
+		\item Clicking on each column would pop out 2 choices: sort in increasing order, sort in decreasing order.
+		\item Clicking on the animal's name will go to the \underline{\textbf{Animal Detail}}'s Servlet (implemented using RestFul API GET method).
+	\end{itemize}
+	\item Show the number of available spaces.
+	\item if the user has appropriate permission (fetched by the corresponding SQL query), an \textit{Add Animal} button will show directing to the \underline{\textbf{Add Animal}} screen.
+        \item if the user has appropriate permission (fetch by the corresponding SQL query), an \textit{Add Adoption Application} button will show directing to the \underline{\textbf{Add Adoption Application}} screen.
+\end{itemize}
+
+\hypertarget{add_animal}{\subsection{Add Animal}}
+
+\subsection*{Abstract Code}
+
+\begin{itemize}
+	\item Process user's post request and convert to a data structure (for example Json or POJO)
+	\item Validate user input, if valid continue, else return user the error message.
+	\item Acquire permit from the semaphore
+	\item TRY:
+	\begin{itemize}
+
+	\item Parse the animal's species from the user's post request
+	\item If the animal's species from the user's post request is exist in the database and the number of availability associated with the animal's species is greater than 0:
+		\begin{itemize}
+			\item Generate the unique petId by accessing the \textbf{Animal} table and pass to the setter of the petId field of the upper-mentioned data structure.
+			\item Submit the data structure to the database.
+			\item Take the user to the \underline{\textbf{Animal Detail}} Screen.
+		\end{itemize}
+	\item Elae:
+		\begin{itemize}
+			\item Return the user an error message with the corresponding error code.
+		\end{itemize}
+
+	\end{itemize}
+	\item Catch Exception:
+		\begin{itemize}
+		\item Log the error message and return the error message to the user.
+		\end{itemize}
+	\item Finally:
+		\begin{itemize}
+		\item Rlease the permit to the semaphore.
+		\end{itemize}
+\end{itemize}
+
+
+\hypertarget{animal_detail}{\subsection{Animal Detail}}
+
+\begin{itemize}
+	\item Show animal's all details (attributes) by the result of the corresponding SQL query.
+	\item Show a "Vaccinations" section which shows any Vaccination history.
+	\item Show \textit{Add Vaccination} button if the corresponding animal has not been adopted.
+	\item Show \textit {Adopt pet} button if the animal is eligible for adoption and if the session user has the permission.
+\end{itemize}
+
+
+\subsection*{Abstract Code}
+
+\subsubsection*{AnimalDetailServlet}
+
+Background: Animal Dashboard's restful API takes the user to the corresponding Animal Detail's front end, and the Animal Detail's front end call the AnimalDetailServlet using the GET method.
+
+And here is the implementation of the AnimalDetailServlet's get method.
+\begin{itemize}
+	\item the AnimalDetailServlet query the database with the restful api's parameter (\textbf{PetId}) and convert to a POJO
+	\item the AnimalDetailServlet return the Json converted from the POJO to the front end.
+	\item the AnimalDetailServlet call the AddVaccinationServlet using the GET method and return the user the vaccination that can be implemented.
+	\item (frontend code) the user can optionally call the AddVaccinationServlet using the POST method.
+\end{itemize}
+
+
+\subsubsection*{AddVaccinationServlet}
+
+Background: Animal Dashboard's restful API takes the user to the corresponding Animal Detail's front end, and the Animal Detail's front end call the AddVaccinationServlet using the GET method.
+
+
+\begin{lstlisting}
+	public class Vaccination {
+		@NotNull Enum VaccinationType;
+		@NotNull Date date;
+		@NotNull Date nextDoseDate;
+		Long vaccineTagNumber;
+	}
+
+	public class AddVaccinationServlet extends HttpServlet {
+		Set<VaccinationType> Get(Animal animal){
+			synchronized (animal.getSingleton()){
+				if (!animal.eligibleForAdoption()){
+				return null;
+				} else {
+					return animal
+						.getSpecies()
+						.getRequiredVaccinations()
+						.setSubtraction(animal
+							.implementedVaccinations
+						);
+				}
+			}
+		}
+		void Post(Set<Vaccination> userImplementations) {
+			synchronized (animal.getSingleton()){
+				for (Vaccination v: userImplementations) {
+					/*
+					implementVaccination talks to
+					the database and put the corresponding
+					vaccination into the animal's
+					corresponding vaccination table.
+					*/
+					DataBaseSingleton.get(animal)
+					.implementVaccination(v);
+				}
+			}
+		}
+	}
+\end{lstlisting}
+
+
+\hypertarget{vaccinations}{\subsection{Vaccinations}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item Populate vaccinations dropdown lists
+	\item When submit button is not clicked, nothing happened
+	\item When submit button is clicked:
+	\begin{itemize}
+	    \item If vaccine is not chosen: catch Exception, log error message and return the error message to the user;
+	    \item If vaccine is chosen, not both vaccination date or next does date are entered: catch Exception, log error message to the user;
+	    \item  Else: update Animal table,
+	 \end{itemize}
+	 \item If submit successfully, Display \underline{\textbf{Animal Detail}}
+\end{itemize}
+
+\hypertarget{adoption}{\subsection{Adoption}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item Show search dialog where user can search both applicant's last name and co-applicant's last name
+	\item Query and display Applicant's contact information
+	\item If select Adopter, show pop up for adoption date and adoption fee
+	\item If enter adoption date and adoption fee, update \textbf{Adoption Information}  table, display  \underline{\textbf{Animal Detail}}
+	\item If cancellation, display  \underline{\textbf{Animal Detail}}
+\end{itemize}
+
+
+\hypertarget{add_adoption_app}{\subsection{Add Adoption Application}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item Show screen to let users enter applicant information including Application first name and last name, Address (street, city, state, zip code), phone number, email address, Date of Application, (optional) co-applicant first name and last name
+	\item When click submit button:
+	\begin{itemize}
+	    \item If at least one contact information is not entered: catch Exception, log error message and return the error message to the user;
+	    \item Else: Add \textbf{Contact Information}, display application ID generated by system
+	\end{itemize}
+	\item When submit button is not clicked, nothing happen
+
+\end{itemize}
+
+
+
+\hypertarget{adoption_app_review}{\subsection{Adoption Application Review}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item Find applicationID with pending approval, display applicationID and status
+	\begin{lstlisting}
+	SELECT application_number, status FROM \textcolor{blue}{ApplicantInformation}
+	ORDER BY application_number DESC;
+	\end{lstlisting}
+
+	\item Update status with dropdown, approved or rejected, Save application status to Contact Information table
+	\begin{lstlisting}
+	UPDATE ApplicantInformation
+	SET status=$status
+	\end{lstlisting}
+\end{itemize}
+
+\hypertarget{animal_control_report}{\subsection{Animal Control Report}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item SuperUser clicked on \textit{Animal Control Report} button from \underline{\textbf{Animal Dashboard}}:
+	\item Run the \textbf{Animal Control Report} task: query for animals' information.
+	\begin{itemize}
+		\item Select month and find the animals that was surrendered by Animal Control in selected month;
+		\item Sort by Pet ID ascending;
+		\item Display animal's information;
+		\begin{lstlisting}
+		SELECT pet_id, surrender_id, animalcontrol, surrender_reason, surrender_month FROM Surrender
+		WHERE surrender_month = $surrender_month AND animalcontrol = $animalcontrol
+		ORDER BY pet_id ASC;
+		\end{lstlisting}
+
+		\item Find the animals that was adopted in selected month;
+		\item Find these adopted animal's adopted date and surrendered date;
+		\item Display animal's information if sheltered dates are https://www.overleaf.com/project/5e3d3e9cdad1020001d0a5d5greater or equal to 60 days in selected month:
+		\begin{lstlisting}
+		SELECT pet_name, adoption_date, surrender_date FROM ((Animal INNER JOIN Surrender ON Animal.pet_id =Surrender.pet_id)
+		INNER JOIN AdoptionInformation ON Animal.pet_id = AdoptionInformation.pet_id)
+		WHERE ((adoption_date  - surrender_date) > =60);
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\hypertarget{volunteer_of_the_month}{\subsection{Volunteer of the Month}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item SuperUser clicked on \textit{Volunteer of the Month} button from \underline{\textbf{Animal Dashboard}}:
+	\item Run the \textbf{Volunteer of the Month} task: query for information and volunteered hours about the volunteers.
+	\begin{itemize}
+		\item Find all volunteers that has volunteered for selected month and year;
+		\item Calculate the total volunteered hours for each of these volunteers;
+		\item Sort the list of volunteers by descending total hours volunteered for selected month and year;
+		\item Display first 5 volunteers' first name, last name, email address and total volunteered hours in that month
+	\end{itemize}
+
+\end{itemize}
+
+
+
+
+\hypertarget{monthly_adoption_report}{\subsection{Monthly Adoption Report}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item \textbf{find the adoption} info for this month
+	\item \textbf{find the surrender} info for this month
+    \item \textbf{find the animal} info according to adoption and surrender
+\item group by species, breed and count total
+    \begin{itemize}
+        \item  order by time and alphabetical order
+        \item combine breed for mixed animal
+
+    \end{itemize}
+
+
+
+
+\end{itemize}
+
+
+
+
+\hypertarget{volunteer_lookup}{\subsection{Volunteer Lookup}}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item \textbf{find people} by their first name matching the search item (jon means jonson, jonstone etc.)
+	\item \textbf{find users} by first and last name and email
+    \item \textbf{find phone number} from volunteer table
+
+\end{itemize}
+
+
+
+
+\hypertarget{vaccine_reminder_report}{\subsection{Vaccine Reminder Report }}
+
+\subsubsection*{Abstract Code}
+
+\begin{itemize}
+	\item User expiration date to \textbf{find all vaccine} that are expiring
+    \item \textbf{Find animals} by vaccine activity id
+    \item \textbf{Find person} who did the vaccine
+
+
+
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,6 @@
+FROM gradle:6.3.0-jdk8
+COPY . /cs6400
+WORKDIR /cs6400
+EXPOSE 8080
+
+CMD gradle bootRun

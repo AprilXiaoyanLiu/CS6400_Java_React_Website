@@ -1,0 +1,55 @@
+version: '3.7'
+
+# Define services
+services:
+
+  frontend-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    restart: always
+    depends_on: 
+      - app-server
+    stdin_open: true
+    networks:
+      - frontend
+
+  # App backend service
+  app-server:
+    # Configuration for building the docker image for the backend service
+    build:
+      context: . # Use an image built from the specified dockerfile in the `app-server` directory.
+      dockerfile: Dockerfile.app-server
+    ports:
+      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: always
+    depends_on: 
+      - db # This service depends on mysql. Start that first.
+    environment: # Pass environment variables to the service
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/team080?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: team080
+      SPRING_DATASOURCE_PASSWORD: password     
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+      - frontend
+  db:
+    build: 
+      context: .
+      dockerfile: Dockerfile.db
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: team080
+      MYSQL_USER: team080
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - backend  
+
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
+  frontend:   

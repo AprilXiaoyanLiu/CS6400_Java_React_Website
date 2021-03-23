@@ -1,0 +1,368 @@
+{
+  "animal": [
+    {
+      "id": 1,
+      "pet_name": "shi zi wang",
+      "sex": 2,
+      "age": 4,
+      "alteration_status": 1,
+      "descriptions": "aggressive attack dog",
+      "microchipId": "0012314",
+      "species": 1,
+      "breed": "Chihuahua,Dachshund",
+      "adoption_status": 2
+    },
+    {
+      "id": 2,
+      "pet_name": "car lord",
+      "sex": 2,
+      "age": 3,
+      "alteration_status": 1,
+      "descriptions": "aggressive attack cat",
+      "microchipId": "001231214",
+      "species": 2,
+      "breed": "Abyssinian",
+      "adoption_status": 1
+    },
+    {
+      "id": 3,
+      "pet_name": "Moca",
+      "sex": 1,
+      "age": 4,
+      "alteration_status": 1,
+      "descriptions": "smart cute dog",
+      "microchipId": "0012314",
+      "species": 1,
+      "breed": "Afghan Hound",
+      "adoption_status": 1
+    },
+    {
+      "id": 4,
+      "pet_name": "Emily",
+      "sex": 1,
+      "age": 1,
+      "alteration_status": 2,
+      "descriptions": "cute and friendly cat",
+      "microchipId": "0012314",
+      "species": 3,
+      "breed": "Mixed",
+      "adoption_status": 1
+    },
+    {
+      "id": 5,
+      "pet_name": "Joana",
+      "sex": 3,
+      "age": 10,
+      "alteration_status": 1,
+      "descriptions": "cute and friendly cat",
+      "microchipId": "0012314",
+      "species": 2,
+      "breed": "Mixed",
+      "adoption_status": 2
+    }
+  ],
+  "breed": [
+    {
+      "breed": "Abyssinian",
+      "species": "Cat"
+    },
+    {
+      "breed": "Aegean Cat",
+      "species": "Cat"
+    },
+    {
+      "breed": "American Botail",
+      "species": "Cat"
+    },
+    {
+      "breed": "Afghan Hound",
+      "species": "Dog"
+    },
+    {
+      "breed": "Airedale Terrier",
+      "species": "Dog"
+    },
+    {
+      "breed": "Azawakh",
+      "species": "Dog"
+    },
+    {
+      "breed": "Dachund",
+      "species": "Dog"
+    },
+    {
+      "breed": "Dalmatian",
+      "species": "Dog"
+    }
+  ],
+  "species": [
+    {
+      "id": 1,
+      "species": "Dog"
+    },
+    {
+      "id": 2,
+      "species": "Cat"
+    }
+  ],
+  "Vaccine": [
+    {
+      "species": "Cat",
+      "vaccine": "Bordetella",
+      "requiredforadoption": "No"
+    },
+    {
+      "species": "Cat",
+      "vaccine": "Feline Calicivirus",
+      "requiredforadoption": "Yes"
+    },
+    {
+      "species": "Dog",
+      "vaccine": "Bordetella",
+      "requiredforadoption": "No"
+    },
+    {
+      "species": "Dog",
+      "vaccine": "Canine Adenovirus-2",
+      "requiredforadoption": "Yes"
+    }
+  ],
+  "animalAllInfo": [
+    {
+      "id": 1,
+      "pet_name": "shi zi wang",
+      "sex": "Male",
+      "age": 4,
+      "alteration_status": "neutered",
+      "descriptions": "aggressive attack dog",
+      "microchipId": "0012314",
+      "species": "Dog",
+      "breed": "Chihuahua,Dachshund",
+      "adoption_status": "Adopted",
+      "surrender_date": "2019-02-02",
+      "surrender_reason": "hurrican happened",
+      "surrender_by_animal_control": "Yes"
+    },
+    {
+      "id": 2,
+      "pet_name": "car lord",
+      "sex": "Male",
+      "age": 3,
+      "alteration_status": "neutered",
+      "descriptions": "aggressive attack cat",
+      "microchipId": "001231214",
+      "species": "Cat",
+      "breed": "Abyssinian",
+      "adoption_status": "Not Adopted",
+      "surrender_date": "2020-03-02",
+      "surrender_reason": "having baby",
+      "surrender_by_animal_control": "No"
+    },
+    {
+      "id": 3,
+      "pet_name": "Moca",
+      "sex": "Female",
+      "age": 4,
+      "alteration_status": "neutered",
+      "descriptions": "smart cute dog",
+      "microchipId": "0012314",
+      "species": "Dog",
+      "breed": "Afghan Hound",
+      "adoption_status": "Adopted",
+      "surrender_date": "2019-12-02",
+      "surrender_reason": "lost",
+      "surrender_by_animal_control": "Yes"
+    }
+  ],
+  "animalvaccine": [
+    {
+      "id": 1,
+      "pet_id": 1,
+      "vaccine": "Canine Adenovirus-2",
+      "username": "abc",
+      "date_administered": "2018-01-02",
+      "expriation_date": "2020-09-01",
+      "vaccination_number": 13456
+    },
+    {
+      "id": 2,
+      "pet_id": 3,
+      "vaccine": "Canine Adenovirus-2",
+      "username": "abc",
+      "date_administered": "2017-05-18",
+      "expriation_date": "2020-03-01",
+      "vaccination_number": 13086
+    },
+    {
+      "id": 3,
+      "pet_id": 2,
+      "vaccine": "Bordetella",
+      "username": "abc",
+      "date_administered": "2017-09-22",
+      "expriation_date": "2020-04-01",
+      "vaccination_number": 13089
+    }
+  ],
+  "application": [
+    {
+      "application_number": 1,
+      "applicant_first_nam": "John",
+      "applicant_last_name": "Zhao",
+      "coapplicant_first_name": null,
+      "coapplicant_last_name": null,
+      "street": "8208 132 Ave",
+      "city": "SAN FRANCISCO",
+      "state": "CA",
+      "zipcode": 94105,
+      "phone_number": "405-123-5678",
+      "email": "abc@dcf.com",
+      "application_date": "2020-01-05 12:01:01",
+      "status": "Pending"
+    },
+    {
+      "application_number": 2,
+      "applicant_first_name": "Emma",
+      "applicant_last_name": "Li",
+      "coapplicant_first_name": "May",
+      "coapplicant_last_name": "Jones",
+      "street": "782 12 st",
+      "city": "Seattle",
+      "state": "WA",
+      "zipcode": 98015,
+      "phone_number": "405-123-5678",
+      "email": "abce@dcf.com",
+      "application_date": "2019-02-05 12:01:01",
+      "status": "Approved"
+    }
+  ],
+  "available_space": [
+    {
+      "species": "Dog",
+      "left_num": 5
+    },
+    {
+      "species": "Cat",
+      "left_num": 10
+    }
+  ],
+  "adoption": [
+    {
+      "adoption_month": 4,
+      "id": 3,
+      "species": 1,
+      "breed": "Afghan Hound",
+      "sex": "Female",
+      "alteration_status": "neutered",
+      "microchipId": "0012314",
+      "surrender_date": "2019-12-02",
+      "surrender_by_animal_control": "Yes",
+      "number_of_days_inrescue": 100
+    }
+  ],
+  "surrender": [
+    {
+      "surrender_month": 12,
+      "id": 3,
+      "species": 1,
+      "breed": "Afghan Hound",
+      "sex": "Female",
+      "alteration_status": "neutered",
+      "microchipId": "0012314",
+      "surrender_date": "2019-12-02",
+      "surrender_by_animal_control": "Yes",
+      "number_of_days_inrescue": 100
+    }
+  ],
+  "volunteerofmonth":[
+    {
+      "year": 2019,
+      "month" : 12,
+      "first_name": "Jack",
+      "last_name": "Ma",
+      "email_address": "a1@3e3.com",
+      "hours": 20
+    },
+    {
+      "year" : 2020,
+      "month" : 2,
+      "first_name": "Jack",
+      "last_name": "Longdon",
+      "email_address": "a1b@3e3.com",
+      "hours": 15
+    }
+  ],
+  "volunteerlookup":[
+    {
+      "first_name" : "John",
+      "last_name": "Smith",
+      "email_address": "John@gmail.com",
+      "phone": '1242377292'
+    },
+    {
+      "first_name" : "Lucy",
+      "last_name": "Green",
+      "email_address": "LG@gmail.com",
+      "phone": '2452377292'
+    }
+  ],
+  "monthlyadoptionreport":[
+    {
+      "month" : 12,
+      "species": 1,
+      "breed": "Afghan Hound",
+      "surrender": 1,
+      "adoption": 0
+    }
+  ],
+
+  "vaccine": [
+    {
+      "month":4,
+      "vaccine": "Bordetella",
+      "due_date": "2020-4-30",
+      "id": 1,
+      "species": 1,
+      "breed": "Chihuahua,Dachshund",
+      "sex": 2,
+      "alteration_status": 2,
+      "microchipId": "0012314",
+      "surrender_date": "2019-02-02",
+      "first_name": "Josh",
+      "last_name": "Rosen"
+    },
+    {
+      "month":6,
+      "vaccine": "Bordetella",
+      "due_date": "2020-4-30",
+      "id": 2,
+      "pet_name": "car lord",
+      "sex": 1,
+      "alteration_status": 1,
+      "microchipId": "001231214",
+      "species": 2,
+      "breed": "Abyssinian",
+      "surrender_date": "2020-03-02",
+      "first_name": "Adrian",
+      "last_name": "Peterson"
+    }
+  ],
+  "state" :[{
+    "pet_name": "",
+    "sex": "",
+    "age": null,
+    "alteration_status": "",
+    "descriptions": "",
+    "microchipId": "",
+    "species": "",
+    "breed": "",
+    "adoption_status": "",
+    "surrender_reason": "",
+    "surrender_date": "",
+    "surrender_by_animal_control": "",
+    "vaccination_type":"",
+    "date_administered":"",
+    "expiration_date":"",
+    "vaccination_number":""
+
+}]
+}

@@ -1,0 +1,35 @@
+Dear Mr. Hughs,
+Thank you grading out project 1. The comments on the project helped us a lot for project2 and the whole design in general.
+But at the same time, we also are really confused on some comments and points deducted. We spent a lot of time and effort on this project and would really need your help with regrading.
+Overall we had a feeling that the comments suggest a 'correct' answer. And we would argue that some design could be different. It might not be most sufficient and smart one, but it's not wrong. Specifically speaking, for EER, we have the below points.
+ 
+1. "You should have all of the application attributes directly on the application entity, and you should have all of the applicant attributes directly on the applicant entity."
+We wanted to separate other details like adoption information from the applicant's personal info. Applicants's attributes did stay with the contact information.
+
+2. "There's no need for a Contact Information Entity, an Other Details entity."
+Same reason as before.
+
+3. " The adoption relationship that you have should then be associated with the accepted application type - not directly with Adopter - and it should be 1:1, where adoption date and adoption fee are attributes of the relationship."
+Again this is due to we didn't separate the adoption information with applicants.
+it could be 1 to N, if we put the apply info on the fill out?
+4. "The number of hours that a Volunteer works needs to represent as its own entity with an N:1 relationship to Volunteer."
+We wanted to put each volunteer's work hours as different rows and each one has a unique ID.
+5. " Missing relationships between Breed and Species "
+6." Vaccinations and Species - partial credit given for having "Required for Adoption" attribute, but this belongs on the relationship between Vaccines and Species."
+This seems to be the same problem as the breed and species should be two entities. Are we being deducted twice for the same reason?
+
+For IFD, we are requesting for below items.
+
+1. Add Animal view needs an arrow to the Add Vaccination task
+2. Missing a task to get vaccinations, and missing an arrow from this missing task to the vaccinations view.
+For the Vaccination tasks, we decided to use a cache in the backend server to store the vaccination. The cache is populated by using the lazy loading mechanism when the Animal Detail is first accessed, and that's why we have an out arrow in the Animal Detail but not Add Animal. And that's also why we don't have the Vaccination task, because it infrequently uses the database. The reason we must use cache is because vaccinations will be shown in the dropdown list, which is frequently accessed by the front end server but also  the Animal vaccinations table changes extremely infrequently. Therefore, it does not make sense to query the database every time when a user uses the dropdown list of vaccinations.
+3. Add Adoption form needs a two-way arrow with Search Approved Adopter.
+We decided not to implement this because this seems to be against that two activities couldn't be connected.
+
+Again, we really appreciate your feedbacks. Those would be very beneficial to our project's future development.
+Regards,
+Team080
+
+
+
+

@@ -1,0 +1,38 @@
+Dear Mr. Hughs,
+Thank you grading out project 1. The comments on the project helped us a lot for project2 and the whole design in general.
+But at the same time, we also are really confused on some comments and points deducted. We spent a lot of time and effort on this project and would really need some clarification on the specifics and your considerations on regrading.
+Overall we had a feeling that the comments suggest's a 'correct' answer. And we would argue that some design could be different. It might not be most sufficient and smart one, but it's not totally wrong. Specifically speaking, we have the below points.
+ 
+
+1. "You should have all of the application attributes directly on the application entity, and you should have all of the applicant attributes directly on the applicant entity."
+We wanted to separate other details like adoption information from the applicant's personal info. Applicants's attributes did stay with the contact information.
+
+2. "There's no need for a Contact Information Entity, an Other Details entity."
+Same reason as before.
+
+3. " The adoption relationship that you have should then be associated with the accepted application type - not directly with Adopter - and it should be 1:1, where adoption date and adoption fee are attributes of the relationship."
+Again this is due to we didn't separate the adoption information with applicants.
+it could be 1 to N, if we put the apply info on the fill out?
+4. "The number of hours that a Volunteer works needs to represent as its own entity with an N:1 relationship to Volunteer."
+We wanted to put each volunteer's work hours as different rows and each one has a unique ID.
+5. " Missing relationships between Breed and Species "
+6." Vaccinations and Species - partial credit given for having "Required for Adoption" attribute, but this belongs on the relationship between Vaccines and Species."
+This seems to be the same problem as the breed and species should be two entities. Are we being deducted twice for the same reason?
+
+For IFD, we are really confused with the two way arrows. For the Volunteer Lookup, Volunteer of the Month and Animal Control Report view, we follow instructor's video for the view profile information flow. We could argue that there's no information saved to database. Same with the Search Approved Adopter.
+
+Again, we really appreciate your feedbacks. Those would be very beneficial to our project's future development.
+Regards,
+Team080
+
+
+
+==========
+IFD, all about two arrows. deducted many times?
+
+======================
+1. added volunteer hours table
+2. add species and breed table
+
+
+
