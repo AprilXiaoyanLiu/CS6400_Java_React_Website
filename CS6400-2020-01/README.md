@@ -1,10 +1,6 @@
-# CS6400-2020-01-Team080
-Repository for CS6400-2020-01-Team080
-Participant:
-Xining Li,
-Yi Zhao,
-Xiaoyan Liu,
-Yaguang Chen
+# CS6400
+Repository for CS6400
+
 
 To do the local deployment
 ```
